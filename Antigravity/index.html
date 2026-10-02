@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House Of Zeraha — Luxury Indian Sarees & Bridal Trousseau</title>
+  <meta name="description"
+    content="House Of Zeraha crafts timeless Indian elegance. Discover pure Kanjivaram silks, heirloom Banarasi sarees, hand-painted organza and bridal trousseau. 100% Silk Mark certified.">
+  <meta name="keywords"
+    content="House Of Zeraha, silk sarees, Kanjivaram saree, Banarasi saree, bridal saree, wedding trousseau, organza saree, designer sarees">
+
+  <!-- Favicon Monogram -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C5A572'>⚜</text></svg>">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Razorpay Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+
+  <!-- ========================================================================
+       SECTION 1: ANNOUNCEMENT BAR
+       ======================================================================== -->
+  <aside class="announcement-bar" aria-label="Special announcements">
+    <div class="announcement-slider-wrap" id="announcementSliderWrap">
+      <button class="announcement-nav-btn prev" id="announcementPrev" aria-label="Previous announcement"
+        title="Previous announcement">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="announcement-slider" id="announcementSlider" aria-live="polite">
+        <div class="announcement-slide active" data-index="0" onclick="handleAnnouncementClick(0)"
+          title="Click to copy privilege code">
+          <span class="announcement-tag">Exclusive Privilege</span>
+          <span class="announcement-text" id="announcementText">Complimentary Handcrafted Silk Keepsake Box on orders
+            above ₹15,000 | Code: <strong>ELEGANCE10</strong></span>
+        </div>
+        <div class="announcement-slide" data-index="1" onclick="handleAnnouncementClick(1)"
+          title="Click for return discount details">
+          <span class="announcement-tag">Special Privilege</span>
+          <span class="announcement-text">Cancel the return <strong>TO GET 20% MORE OFF</strong></span>
+        </div>
+      </div>
+
+      <button class="announcement-nav-btn next" id="announcementNext" aria-label="Next announcement"
+        title="Next announcement">
+        <svg width="18" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+    <div class="announcement-meta">
+      <label for="currencySelect" class="visually-hidden" style="display:none;">Currency</label>
+      <select id="currencySelect" class="currency-select" aria-label="Select Currency">
+        <option value="INR" selected>INR (₹)</option>
+        <option value="USD">USD ($)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="AED">AED (د.إ)</option>
+      </select>
+      <a href="javascript:void(0)" onclick="openTrackOrderModal()" style="color:var(--color-sand);">Track Drape</a>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       SECTION 2: STICKY NAVIGATION HEADER
+       ======================================================================== -->
+  <header class="header-wrapper" id="mainHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Primary Navigation">
+        <!-- Mobile Hamburger -->
+        <button class="nav-icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu"
+          onclick="toggleMobileNav()">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </button>
+
+        <!-- Brand Identity -->
+        <a href="javascript:void(0)" onclick="navigateTo('home')" class="brand-logo-wrap"
+          aria-label="House Of Zeraha Home">
+          <div class="brand-crest">
+            <!-- Regal Floral Lotus Crest -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L14.5 7.5L20 9L16 13L17 19L12 16L7 19L8 13L4 9L9.5 7.5L12 2Z"
+                fill="var(--color-champagne)" />
+            </svg>
+          </div>
+          <span class="brand-title">House of Zeraha</span>
+          <span class="brand-tagline">Timeless Indian Elegance</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links" id="desktopNavLinks">
+          <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link active" onclick="navigateTo('home')">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" onclick="navigateTo('shop')">Shop All Sarees</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" onclick="navigateTo('shop')">
+              Collections
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor">
+                <path d="M1 1L5 5L9 1" />
+              </svg>
+            </a>
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu">
+              <div class="dropdown-item" onclick="filterCatalogBy('Silk')">
+                <img src="assets/images/collection_silk.jpg" class="dropdown-item-thumb" alt="Pure Silk">
+                <div class="dropdown-item-info">
+                  <h4>Pure Silk Sarees</h4>
+                  <p>Kanjivaram & Banarasi</p>
+                </div>
+              </div>
+              <div class="dropdown-item" onclick="filterCatalogBy('Semi-Silk')">
+                <img src="assets/images/collection_semisilk.jpg" class="dropdown-item-thumb" alt="Organza & Semi-Silk">
+                <div class="dropdown-item-info">
+                  <h4>Organza & Semi-Silk</h4>
+                  <p>Pastels & Sheer Drapes</p>
+                </div>
+              </div>
+              <div class="dropdown-item" onclick="filterCatalogBy('Festive')">
+                <img src="assets/images/collection_festive.jpg" class="dropdown-item-thumb" alt="Festive Celebrations">
+                <div class="dropdown-item-info">
+                  <h4>Festive Edit</h4>
+                  <p>Burgundy & Zardozi</p>
+                </div>
+              </div>
+              <div class="dropdown-item" onclick="filterCatalogBy('Wedding')">
+                <img src="assets/images/collection_wedding.jpg" class="dropdown-item-thumb" alt="Bridal & Wedding">
+                <div class="dropdown-item-info">
+                  <h4>Bridal Trousseau</h4>
+                  <p>Heirloom Red & Gold</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" onclick="scrollToSection('occasionsSection')">Occasions</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" onclick="scrollToSection('storySection')">Our Story</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link festive-tag" onclick="openConciergeModal()">
+              Styling Atelier
+            </a>
+          </li>
+        </ul>
+
+        <!-- Nav Action Icons -->
+        <div class="nav-actions">
+          <!-- Search Icon Button -->
+          <button class="nav-icon-btn" id="searchBtn" aria-label="Search sarees" onclick="openSearchModal()">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+            </svg>
+          </button>
+
+          <!-- Wishlist Button -->
+          <button class="nav-icon-btn" id="wishlistBtn" aria-label="View Wishlist" onclick="openWishlistDrawer()">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+            <span class="badge-count" id="wishlistCount">0</span>
+          </button>
+
+          <!-- User / Atelier Account -->
+          <button class="nav-icon-btn" id="accountBtn" aria-label="My Account" onclick="openAccountModal()">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+            </svg>
+          </button>
+
+          <!-- Shopping Bag Button -->
+          <button class="nav-icon-btn" id="cartBtn" aria-label="Shopping Bag" onclick="openCartDrawer()">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z" />
+            </svg>
+            <span class="badge-count" id="cartCount">0</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div class="cart-drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMobileNav()">
+    <div class="cart-drawer" style="right:auto; left:0; transform:translateX(-100%);" id="mobileDrawerBox"
+      onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3>House of Zeraha</h3>
+        <button class="modal-close-btn" style="position:static;" onclick="toggleMobileNav()">&times;</button>
+      </div>
+      <div style="padding:1.5rem; display:flex; flex-direction:column; gap:1.25rem;">
+        <a href="javascript:void(0)" onclick="navigateTo('home'); toggleMobileNav();"
+          style="font-size:1.1rem; font-weight:600;">Home</a>
+        <a href="javascript:void(0)" onclick="navigateTo('shop'); toggleMobileNav();"
+          style="font-size:1.1rem; font-weight:600;">Shop All Sarees</a>
+        <div
+          style="border-left:2px solid var(--color-champagne); padding-left:1rem; display:flex; flex-direction:column; gap:0.75rem;">
+          <a href="javascript:void(0)" onclick="filterCatalogBy('Silk'); toggleMobileNav();">Pure Silk Sarees</a>
+          <a href="javascript:void(0)" onclick="filterCatalogBy('Semi-Silk'); toggleMobileNav();">Organza &
+            Semi-Silk</a>
+          <a href="javascript:void(0)" onclick="filterCatalogBy('Festive'); toggleMobileNav();">Festive Celebrations</a>
+          <a href="javascript:void(0)" onclick="filterCatalogBy('Wedding'); toggleMobileNav();">Bridal Trousseau</a>
+        </div>
+        <a href="javascript:void(0)" onclick="scrollToSection('occasionsSection'); toggleMobileNav();"
+          style="font-size:1.1rem; font-weight:600;">Shop by Occasion</a>
+        <a href="javascript:void(0)" onclick="scrollToSection('storySection'); toggleMobileNav();"
+          style="font-size:1.1rem; font-weight:600;">Our Story & Artisans</a>
+        <a href="javascript:void(0)" onclick="openConciergeModal(); toggleMobileNav();"
+          style="font-size:1.1rem; font-weight:600; color:var(--color-burgundy);">VIP WhatsApp Concierge</a>
+        <a href="javascript:void(0)" onclick="openPlatformModal(); toggleMobileNav();"
+          style="font-size:0.9rem; color:var(--color-champagne-dark);">Platform Architecture (A6 Specs)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN PAGE VIEW CONTAINER -->
+  <main id="mainContent">
+
+    <!-- ======================================================================
+         PAGE VIEW: HOMEPAGE
+         ====================================================================== -->
+    <div id="homeView">
+
+      <!-- SECTION 3: HERO BANNER -->
+      <section class="hero-section" id="heroSection">
+        <div class="hero-bg-wrapper">
+          <img src="assets/images/hero_banner.jpg" alt="House Of Zeraha Royal Ivory Silk Saree" class="hero-bg-img"
+            id="heroImage">
+          <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+          <div class="hero-container">
+            <span class="hero-pill">
+              <span style="color:var(--color-champagne);">⚜</span>
+              Autumn / Winter 2026 Collection
+            </span>
+            <h1 class="hero-title">
+              Elegance woven into <em>every moment.</em>
+            </h1>
+            <p class="hero-subtitle">
+              Heirloom pure silks, antique gold zari weaves, and featherlight organzas crafted by master artisan
+              families for weddings, festivals, and quiet luxury.
+            </p>
+            <div class="hero-cta-group">
+              <button class="btn btn-gold btn-lg" onclick="navigateTo('shop')">
+                Shop All Sarees
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+              <button class="btn btn-outline btn-lg" style="color:var(--color-ivory); border-color:var(--color-sand);"
+                onclick="filterCatalogBy('Wedding')">
+                Explore Bridal Trousseau
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Bar Directly Under Hero -->
+      <section class="trust-bar">
+        <div class="container">
+          <div class="trust-grid">
+            <div class="trust-item">
+              <div class="trust-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                </svg>
+              </div>
+              <div class="trust-text">
+                <h5>100% Pure Silk Mark</h5>
+                <p>Ministry of Textiles Certified</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" />
+                </svg>
+              </div>
+              <div class="trust-text">
+                <h5>Heirloom Velvet Box</h5>
+                <p>Complimentary gift preservation chest</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+                </svg>
+              </div>
+              <div class="trust-text">
+                <h5>Insured Worldwide Shipping</h5>
+                <p>Complimentary across India</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                </svg>
+              </div>
+              <div class="trust-text">
+                <h5>Bespoke Blouse Tailoring</h5>
+                <p>Personalized WhatsApp fittings</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: SHOP BY COLLECTION -->
+      <section class="collections-section" id="collectionsSection">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pretitle">Curated Masterpieces</span>
+            <h2 class="section-title">Shop by Collection</h2>
+            <p class="section-desc">Each weave is rooted in ancient craft traditions, handwoven over weeks by
+              generational artisans in Varanasi, Kanchipuram and Chanderi.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="collections-grid" id="collectionsGrid">
+            <!-- Populated via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: FEATURED SAREES / BESTSELLERS -->
+      <section class="featured-section" id="featuredSection">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pretitle">The House Bestsellers</span>
+            <h2 class="section-title">Featured Drapes</h2>
+            <p class="section-desc">Cherished by brides, connoisseurs and patrons of fine Indian handlooms worldwide.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="filter-pills-bar">
+            <button class="filter-pill active" onclick="filterFeatured('all', this)">All Bestsellers</button>
+            <button class="filter-pill" onclick="filterFeatured('Silk', this)">Pure Silks</button>
+            <button class="filter-pill" onclick="filterFeatured('Wedding', this)">Bridal Trousseau</button>
+            <button class="filter-pill" onclick="filterFeatured('Festive', this)">Festive Burgundy & Gold</button>
+            <button class="filter-pill" onclick="filterFeatured('Semi-Silk', this)">Organza & Sheers</button>
+          </div>
+
+          <!-- Featured Products Grid -->
+          <div class="products-grid" id="featuredGrid">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div style="text-align:center; margin-top:3.5rem;">
+            <button class="btn btn-primary btn-lg" onclick="navigateTo('shop')">
+              Explore All 24 Curated Sarees
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: SHOP BY OCCASION -->
+      <section class="occasions-section" id="occasionsSection">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pretitle">The Occasion Edit</span>
+            <h2 class="section-title">Dressed for Every Milestone</h2>
+            <p class="section-desc">Whether taking center stage at a wedding or hosting an intimate dinner, select
+              sarees tailored to the emotion of the moment.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="occasions-grid" id="occasionsGrid">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: THE HOUSE OF ZERAHA STORY -->
+      <section class="story-section" id="storySection">
+        <div class="container">
+          <div class="story-grid">
+            <div class="story-media">
+              <img src="assets/images/artisan_story.jpg" alt="Master Weaver at Heritage Wooden Handloom in Varanasi"
+                class="story-img-main">
+              <div class="story-badge-floating">
+                <span class="stat">450+</span>
+                <span class="stat-label">Artisan Weavers</span>
+              </div>
+            </div>
+
+            <div class="story-content">
+              <span class="section-pretitle">The Craft & Heritage</span>
+              <h2 class="section-title" style="text-align:left; font-size:2.8rem;">Modern Indian Elegance</h2>
+              <blockquote class="story-quote">
+                “A saree is not merely six yards of fabric; it is an enduring chronicle of Indian craft, memory, and
+                grace.”
+              </blockquote>
+              <p style="margin-bottom:1.25rem;">
+                House Of Zeraha was conceived as an ode to timeless Indian luxury. Inspired by the meticulous curation
+                of fine jewelry and royal textile archives, we bridge the gap between traditional weaver clusters and
+                modern women who seek authenticity without compromise.
+              </p>
+              <p>
+                From the sanctified looms of Kanchipuram to the spiritual ghats of Varanasi, every yarn is
+                hand-selected, tested for 100% pure silk integrity, and finished with master craftsmanship.
+              </p>
+
+              <div class="story-pillars">
+                <div class="story-pillar-item">
+                  <h5><span>⚜</span> 100% Silk Mark Authenticity</h5>
+                  <p>Certified natural mulberry threads and tested zari with zero synthetic shortcuts.</p>
+                </div>
+                <div class="story-pillar-item">
+                  <h5><span>⚜</span> Fair Artisan Wages</h5>
+                  <p>Direct partnerships with 18 multi-generational weaver families across India.</p>
+                </div>
+                <div class="story-pillar-item">
+                  <h5><span>⚜</span> Custom Blouse Atelier</h5>
+                  <p>In-house master tailors creating personalized silhouettes for your measurements.</p>
+                </div>
+                <div class="story-pillar-item">
+                  <h5><span>⚜</span> Quiet Luxury Packaging</h5>
+                  <p>Delivered in an archival velvet keepsake box with cedarwood scent sachets.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: CLIENT TESTIMONIALS & REVIEWS -->
+      <section class="reviews-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pretitle">Patron Chronicles</span>
+            <h2 class="section-title">Words From Our Patrons</h2>
+            <p class="section-desc">Experience the delight of draping a House of Zeraha heirloom, as told by women who
+              value true distinction.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="reviews-grid" id="reviewsGrid">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Saree Draping & Fabric Guide Accordion -->
+      <section style="padding:4.5rem 0; background:var(--color-ivory-light); border-top:1px solid var(--color-sand);">
+        <div class="container" style="max-width:900px;">
+          <div class="section-header" style="margin-bottom:2rem;">
+            <span class="section-pretitle">Saree Connoisseur Guide</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="section-divider"></div>
+          </div>
+
+          <div id="faqContainer" style="display:flex; flex-direction:column; gap:0.85rem;">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </section>
+
+    </div><!-- End #homeView -->
+
+
+    <!-- ======================================================================
+         PAGE VIEW: SHOP ALL SAREES (CATALOG VIEW WITH FILTERS)
+         ====================================================================== -->
+    <div id="shopView" class="catalog-view" style="display:none;">
+      <div class="container">
+        <!-- Catalog Header -->
+        <div class="catalog-header">
+          <div>
+            <span class="section-pretitle">The Complete Archive</span>
+            <h1 id="catalogTitle">Shop All Sarees</h1>
+            <p id="catalogSubtitle">Showing all 24 curated handcrafted sarees with complete specifications and
+              transparent pricing.</p>
+          </div>
+          <div class="catalog-controls">
+            <span id="resultsCount" style="font-size:0.85rem; font-weight:600; color:var(--color-espresso-light);">24
+              Sarees</span>
+            <select id="catalogSort" class="sort-select" onchange="applyFiltersAndSort()">
+              <option value="featured">Featured First</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+              <option value="newest">New Arrivals</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="catalog-layout">
+          <!-- Sidebar Filters -->
+          <aside class="catalog-sidebar">
+            <!-- Search in catalog -->
+            <div class="filter-group">
+              <div class="filter-title">Search Sarees</div>
+              <input type="text" id="catalogSearchInput" class="form-input"
+                placeholder="Search by name, code or weave..." oninput="applyFiltersAndSort()" style="width:100%;">
+            </div>
+
+            <!-- Categories -->
+            <div class="filter-group">
+              <div class="filter-title">Category / Fabric</div>
+              <div class="filter-options-list">
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="catFilter" value="Silk" onchange="applyFiltersAndSort()">
+                  Pure Silk (Kanjivaram & Banarasi)
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="catFilter" value="Semi-Silk" onchange="applyFiltersAndSort()">
+                  Organza & Semi-Silk
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="catFilter" value="Festive" onchange="applyFiltersAndSort()">
+                  Festive Edit (Burgundy & Zari)
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="catFilter" value="Wedding" onchange="applyFiltersAndSort()">
+                  Bridal & Wedding Trousseau
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="catFilter" value="Everyday" onchange="applyFiltersAndSort()">
+                  Everyday Linen-Silk & Chanderi
+                </label>
+              </div>
+            </div>
+
+            <!-- Occasions -->
+            <div class="filter-group">
+              <div class="filter-title">Occasion</div>
+              <div class="filter-options-list">
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="occFilter" value="Wedding" onchange="applyFiltersAndSort()">
+                  Wedding Ceremony
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="occFilter" value="Wedding Guest" onchange="applyFiltersAndSort()">
+                  Wedding Guest & Reception
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="occFilter" value="Festive" onchange="applyFiltersAndSort()">
+                  Festive Celebrations (Diwali/Puja)
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" name="occFilter" value="Everyday" onchange="applyFiltersAndSort()">
+                  Everyday Elegance
+                </label>
+              </div>
+            </div>
+
+            <!-- Color Swatches -->
+            <div class="filter-group">
+              <div class="filter-title">Colour Palette</div>
+              <div class="color-swatches-grid">
+                <button type="button" class="color-swatch-btn" onclick="toggleColorFilter('Ivory', this)">
+                  <span class="swatch-circle" style="background:#F8F4EC; border:1px solid #C5A572;"></span>
+                  <span class="swatch-label">Ivory</span>
+                </button>
+                <button type="button" class="color-swatch-btn" onclick="toggleColorFilter('Red', this)">
+                  <span class="swatch-circle" style="background:#8B1E2B;"></span>
+                  <span class="swatch-label">Crimson</span>
+                </button>
+                <button type="button" class="color-swatch-btn" onclick="toggleColorFilter('Burgundy', this)">
+                  <span class="swatch-circle" style="background:#722F3B;"></span>
+                  <span class="swatch-label">Burgundy</span>
+                </button>
+                <button type="button" class="color-swatch-btn" onclick="toggleColorFilter('Champagne', this)">
+                  <span class="swatch-circle" style="background:#C5A572;"></span>
+                  <span class="swatch-label">Gold</span>
+                </button>
+                <button type="button" class="color-swatch-btn" onclick="toggleColorFilter('Green', this)">
+                  <span class="swatch-circle" style="background:#1B4D3E;"></span>
+                  <span class="swatch-label">Emerald</span>
+                </button>
+                <button type="button" class="color-swatch-btn" onclick="toggleColorFilter('Navy', this)">
+                  <span class="swatch-circle" style="background:#1A2B4C;"></span>
+                  <span class="swatch-label">Navy</span>
+                </button>
+                <button type="button" class="color-swatch-btn" onclick="toggleColorFilter('Pink', this)">
+                  <span class="swatch-circle" style="background:#E6B8B8;"></span>
+                  <span class="swatch-label">Pastel Pink</span>
+                </button>
+                <button type="button" class="color-swatch-btn" onclick="toggleColorFilter('Mustard', this)">
+                  <span class="swatch-circle" style="background:#D49B28;"></span>
+                  <span class="swatch-label">Mustard</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-group">
+              <div class="filter-title">Maximum Price</div>
+              <input type="range" id="priceRange" class="price-range-slider" min="7000" max="50000" step="1000"
+                value="50000" oninput="updatePriceSlider(this.value)">
+              <div class="price-range-values">
+                <span>₹7,000</span>
+                <span id="priceRangeValue" style="color:var(--color-champagne-dark);">Up to ₹50,000</span>
+              </div>
+            </div>
+
+            <button class="clear-filters-btn" onclick="resetFilters()">Reset All Filters</button>
+          </aside>
+
+          <!-- Catalog Products Grid -->
+          <div class="products-grid" id="catalogGrid">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </div><!-- End #shopView -->
+
+  </main>
+
+
+  <!-- ========================================================================
+       SECTION 8: TRUST AND FOOTER
+       ======================================================================== -->
+  <footer class="footer" id="mainFooter">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Col 1: Brand & Philosophy -->
+        <div class="footer-brand">
+          <div class="brand-crest" style="justify-content:flex-start; margin-bottom:0.5rem;">
+            <svg viewBox="0 0 24 24" style="width:24px; height:24px; fill:var(--color-champagne);">
+              <path d="M12 2L14.5 7.5L20 9L16 13L17 19L12 16L7 19L8 13L4 9L9.5 7.5L12 2Z" />
+            </svg>
+          </div>
+          <h3 class="brand-title">House of Zeraha</h3>
+          <p class="brand-tagline">Timeless Indian Elegance</p>
+          <p class="footer-brand-desc">
+            A premium Indian saree boutique dedicated to the preservation of heirloom textile arts. Weaving pure
+            mulberry silk and authentic zari for the world's most momentous occasions.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://instagram.com" target="_blank" class="social-icon-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/919876543210" target="_blank" class="social-icon-btn"
+              aria-label="WhatsApp Concierge">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-1.09-3.99-3.75-4.11-3.92-.12-.17-.99-1.32-.99-2.55 0-1.22.65-1.81.88-2.06.23-.26.5-.32.67-.32.17 0 .34 0 .49.01.15.01.37-.06.57.44.22.52.74 1.83.8 1.97.07.13.11.29.02.48-.09.18-.14.3-.28.46-.13.16-.28.35-.4.47-.13.13-.26.27-.11.53.15.25.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.11 1.3.26.13.41.11.56-.07.16-.17.67-.78.85-1.05.18-.26.36-.22.6-.13zM12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.08L2 22l5.06-1.33A9.957 9.957 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+              </svg>
+            </a>
+            <a href="https://pinterest.com" target="_blank" class="social-icon-btn" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 0a12 12 0 0 0-4.37 23.18c-.06-.99-.1-2.52.21-3.62l1.37-5.83s-.35-.7-.35-1.73c0-1.62.94-2.83 2.11-2.83 1 0 1.48.75 1.48 1.64 0 1-.64 2.5-1 3.88-.28 1.16.58 2.11 1.72 2.11 2.07 0 3.66-2.18 3.66-5.32 0-2.78-2-4.73-4.85-4.73-3.3 0-5.24 2.48-5.24 5.04 0 1 .38 2.07.86 2.65.1.11.11.21.08.33l-.32 1.33c-.05.21-.17.26-.39.16-1.45-.67-2.35-2.79-2.35-4.5 0-3.66 2.66-7.02 7.68-7.02 4.03 0 7.16 2.87 7.16 6.7 0 4-2.53 7.23-6.04 7.23-1.18 0-2.29-.61-2.67-1.34l-.73 2.77c-.26 1.01-.98 2.27-1.46 3.05A12 12 0 1 0 12 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: The Boutiques -->
+        <div>
+          <h4 class="footer-col-title">The Collections</h4>
+          <ul class="footer-links-list">
+            <li><span class="footer-link" onclick="filterCatalogBy('Silk')">Kanjivaram Silk Sarees</span></li>
+            <li><span class="footer-link" onclick="filterCatalogBy('Silk')">Banarasi Katan Silk</span></li>
+            <li><span class="footer-link" onclick="filterCatalogBy('Semi-Silk')">Organza & Sheer Botaniques</span></li>
+            <li><span class="footer-link" onclick="filterCatalogBy('Festive')">Festive Burgundy & Zari</span></li>
+            <li><span class="footer-link" onclick="filterCatalogBy('Wedding')">Royal Bridal Trousseau</span></li>
+            <li><span class="footer-link" onclick="filterCatalogBy('Everyday')">Linen-Silk & Chanderi</span></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Concierge & Policies -->
+        <div>
+          <h4 class="footer-col-title">Client Concierge</h4>
+          <ul class="footer-links-list">
+            <li><span class="footer-link" onclick="openConciergeModal()">WhatsApp Video Drape Call</span></li>
+            <li><span class="footer-link" onclick="openTrackOrderModal()">Track My Saree Order</span></li>
+            <li><span class="footer-link" onclick="openPolicyModal('shipping')">Worldwide Shipping & Duties</span></li>
+            <li><span class="footer-link" onclick="openPolicyModal('returns')">7-Day Return & Exchange</span></li>
+            <li><span class="footer-link" onclick="openPolicyModal('silkmark')">Silk Mark Verification</span></li>
+            <li><span class="footer-link" onclick="openPlatformModal()"
+                style="color:var(--color-champagne-light); font-weight:600;">Platform Architecture (A6 Specs)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter & Exclusive Salon -->
+        <div>
+          <h4 class="footer-col-title">The Zeraha Salon</h4>
+          <p class="footer-newsletter-text">
+            Receive private invitations to preview limited edition seasonal handlooms before public release, plus 10%
+            off your inaugural drape.
+          </p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); handleNewsletterSubmit();">
+            <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="Your email address..."
+              required>
+            <button type="submit" class="btn btn-gold btn-sm">Join</button>
+          </form>
+          <span style="font-size:0.7rem; color:var(--color-sand); opacity:0.8;">We respect your privacy. Unsubscribe at
+            any time.</span>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 House Of Zeraha. All Rights Reserved. Elegance Woven Into Every Moment.
+        </div>
+        <div class="payment-methods-row">
+          <span>Secure Payments via</span>
+          <span class="payment-badge">Razorpay</span>
+          <span class="payment-badge">UPI / GPay</span>
+          <span class="payment-badge">Visa & Mastercard</span>
+          <span class="payment-badge">Amex</span>
+          <span class="payment-badge">COD Available</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ========================================================================
+       MODAL 1: PRODUCT DETAIL MODAL (PDP - 04)
+       ======================================================================== -->
+  <div class="modal-overlay" id="pdpModal" onclick="closePdpModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closePdpModal()" aria-label="Close dialog">&times;</button>
+      <div class="pdp-grid">
+        <!-- Left: Image Gallery with Thumbnails -->
+        <div class="pdp-gallery-wrap">
+          <div class="pdp-main-img-wrap">
+            <img src="" id="pdpMainImg" alt="House Of Zeraha Saree Detail" class="pdp-main-img">
+          </div>
+          <div class="pdp-thumbnails-strip" id="pdpThumbnailsStrip">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Right: Specifications & Purchasing -->
+        <div class="pdp-details-wrap">
+          <div class="pdp-meta-top">
+            <span class="pdp-code" id="pdpCode">HZ-SILK-001</span>
+            <span class="pdp-stock-badge" id="pdpStock">In Stock (3 Left)</span>
+          </div>
+
+          <h2 class="pdp-title" id="pdpTitle">Royal Swarnambari Kanjivaram Silk Saree</h2>
+
+          <div class="pdp-rating-row">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+            </div>
+            <span id="pdpReviewCount" style="color:var(--color-espresso-light); font-size:0.78rem;">4.9 / 5 (42
+              reviews)</span>
+            <span style="color:var(--color-champagne);">•</span>
+            <span id="pdpOrigin" style="color:var(--color-espresso-light); font-size:0.78rem;">Kanchipuram, Tamil
+              Nadu</span>
+          </div>
+
+          <!-- Pricing Box -->
+          <div class="pdp-pricing-box">
+            <div class="pdp-prices">
+              <span class="pdp-selling-price" id="pdpSellingPrice">₹28,500</span>
+              <span class="pdp-mrp" id="pdpMrp">₹36,000</span>
+              <span class="price-discount" id="pdpDiscount">21% OFF</span>
+            </div>
+            <p class="pdp-tax-note">Inclusive of all taxes. Free insured worldwide delivery & velvet keepsake case.</p>
+          </div>
+
+          <!-- 11 Standardized Product Fields from Section 6 -->
+          <table class="pdp-specs-table">
+            <tbody>
+              <tr>
+                <td>Fabric Composition</td>
+                <td id="pdpFabric">100% Pure Mulberry Silk with 3-Ply Pure Gold Zari</td>
+              </tr>
+              <tr>
+                <td>Product Colour</td>
+                <td id="pdpColour">Warm Ivory & Antique Gold</td>
+              </tr>
+              <tr>
+                <td>Occasion</td>
+                <td id="pdpOccasion">Wedding / Trousseau / Festive</td>
+              </tr>
+              <tr>
+                <td>Saree Length</td>
+                <td id="pdpLength">5.5 metres (Complimentary fall & pico included)</td>
+              </tr>
+              <tr>
+                <td>Blouse Piece</td>
+                <td id="pdpBlouse">Included (0.8m unstitched pure silk with brocade border)</td>
+              </tr>
+              <tr>
+                <td>Care Instructions</td>
+                <td id="pdpCare">Dry clean only. Wrap in unbleached pure cotton muslin.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Custom Blouse Addon Option -->
+          <label class="pdp-addon-box" for="blouseStitchingCheck">
+            <input type="checkbox" id="blouseStitchingCheck" onchange="toggleBlouseAddon()">
+            <div class="pdp-addon-text">
+              <h6>Add Custom Blouse Tailoring (+₹1,499)</h6>
+              <p>Our master tailor connects over WhatsApp for your neck, sleeve & padding measurements.</p>
+            </div>
+          </label>
+
+          <!-- Delivery Pincode Checker -->
+          <div class="pincode-box">
+            <span class="pincode-label">Estimated Delivery & Pincode Check</span>
+            <div class="pincode-input-group">
+              <input type="text" id="pincodeInput" class="pincode-input"
+                placeholder="Enter 6-digit Pincode (e.g. 560001, 110001)">
+              <button class="btn btn-outline btn-sm" onclick="checkPincode()">Check</button>
+            </div>
+            <div class="pincode-result" id="pincodeResult">
+              ✓ Fast dispatch available. Estimated delivery by Friday (Complimentary express courier).
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="pdp-cta-group">
+            <button class="btn btn-primary btn-lg" id="pdpAddToCartBtn" onclick="addCurrentProductToCart()">
+              Add to Shopping Bag
+            </button>
+            <button class="btn btn-gold btn-lg" onclick="buyNowCurrentProduct()">
+              Buy It Now (1-Click)
+            </button>
+          </div>
+
+          <!-- WhatsApp Drape Video Call CTA -->
+          <button class="whatsapp-consult-btn" onclick="openWhatsAppForProduct()">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-1.09-3.99-3.75-4.11-3.92-.12-.17-.99-1.32-.99-2.55 0-1.22.65-1.81.88-2.06.23-.26.5-.32.67-.32.17 0 .34 0 .49.01.15.01.37-.06.57.44.22.52.74 1.83.8 1.97.07.13.11.29.02.48-.09.18-.14.3-.28.46-.13.16-.28.35-.4.47-.13.13-.26.27-.11.53.15.25.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.11 1.3.26.13.41.11.56-.07.16-.17.67-.78.85-1.05.18-.26.36-.22.6-.13zM12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.08L2 22l5.06-1.33A9.957 9.957 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+            </svg>
+            Book WhatsApp Live Video Call to View This Drape
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       MODAL 2: SLIDE-OUT CART DRAWER (07)
+       ======================================================================== -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3>Shopping Bag (<span id="cartDrawerCount">0</span>)</h3>
+        <button class="modal-close-btn" style="position:static;" onclick="closeCartDrawer()">&times;</button>
+      </div>
+
+      <!-- Free Shipping & Gift Progress Bar -->
+      <div class="cart-free-shipping-bar">
+        <div id="freeShippingText">Enjoy Free Insured Domestic Shipping & Velvet Keepsake Box!</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="shippingProgressFill"></div>
+        </div>
+      </div>
+
+      <!-- Cart Items Container -->
+      <div class="cart-items-container" id="cartItemsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Cart Drawer Footer -->
+      <div class="cart-drawer-footer" id="cartDrawerFooter">
+        <!-- Coupon Code Input -->
+        <div class="coupon-row">
+          <input type="text" id="cartCouponInput" class="coupon-input" placeholder="Coupon: ELEGANCE10">
+          <button class="btn btn-outline btn-sm" onclick="applyCouponCode()">Apply</button>
+        </div>
+        <div id="couponMessage" style="font-size:0.75rem; margin-bottom:0.75rem; display:none;"></div>
+
+        <div class="cart-summary-line">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">₹0</span>
+        </div>
+        <div class="cart-summary-line" id="cartDiscountRow" style="display:none; color:var(--color-burgundy);">
+          <span>Privilege Discount</span>
+          <span id="cartDiscount">-₹0</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>Insured Express Shipping</span>
+          <span style="color:#2E7D32; font-weight:600;">FREE</span>
+        </div>
+        <div class="cart-total-line">
+          <span>Total (Taxes Included)</span>
+          <span id="cartTotal">₹0</span>
+        </div>
+
+        <button class="btn btn-primary btn-lg" style="width:100%; margin-bottom:0.5rem;" id="cartCheckoutBtn" onclick="openCheckoutModal()">
+          Proceed to Secure Checkout
+        </button>
+        <button class="btn btn-outline btn-sm" style="width:100%; margin-bottom:0.5rem;" onclick="shareCartOnWhatsApp()" id="cartWhatsAppShareBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle; margin-right:4px;"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-1.09-3.99-3.75-4.11-3.92-.12-.17-.99-1.32-.99-2.55 0-1.22.65-1.81.88-2.06.23-.26.5-.32.67-.32.17 0 .34 0 .49.01.15.01.37-.06.57.44.22.52.74 1.83.8 1.97.07.13.11.29.02.48-.09.18-.14.3-.28.46-.13.16-.28.35-.4.47-.13.13-.26.27-.11.53.15.25.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.11 1.3.26.13.41.11.56-.07.16-.17.67-.78.85-1.05.18-.26.36-.22.6-.13zM12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.08L2 22l5.06-1.33A9.957 9.957 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          Share My Cart via WhatsApp
+        </button>
+        <button class="btn btn-outline btn-sm" style="width:100%;" onclick="closeCartDrawer()">
+          Continue Browsing Sarees
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       MODAL 3: CHECKOUT SIMULATOR & ORDER SUCCESS (07)
+       ======================================================================== -->
+  <div class="modal-overlay" id="checkoutModal" onclick="closeCheckoutModal()">
+    <div class="modal-box checkout-modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeCheckoutModal()">&times;</button>
+
+      <div class="checkout-steps">
+        <div class="checkout-step-tab active" id="stepTab1">1. Shipping Address</div>
+        <div class="checkout-step-tab" id="stepTab2">2. Payment Method</div>
+        <div class="checkout-step-tab" id="stepTab3">3. Confirmation</div>
+      </div>
+
+      <div class="checkout-body" id="checkoutBody">
+        <!-- Step 1: Address Details -->
+        <div id="checkoutStep1">
+          <h3 style="font-size:1.4rem; margin-bottom:1.25rem;">Shipping & Delivery Details</h3>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">First Name *</label>
+              <input type="text" id="shipFirstName" class="form-input" placeholder="e.g. Gayatri" value="Gayatri">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name *</label>
+              <input type="text" id="shipLastName" class="form-input" placeholder="e.g. Krishnan" value="Krishnan">
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" id="shipEmail" class="form-input" placeholder="e.g. gayatri@example.com"
+                value="gayatri@zeraha-patron.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">WhatsApp / Phone *</label>
+              <input type="tel" id="shipPhone" class="form-input" placeholder="+91 98765 43210" value="+91 98450 12345">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Street Address & Apartment *</label>
+            <input type="text" id="shipAddress" class="form-input" placeholder="House/Flat No, Landmark, Road"
+              value="No. 14, Alwarpet High Road">
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <input type="text" id="shipCity" class="form-input" placeholder="City" value="Chennai">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pincode / Postal Code *</label>
+              <input type="text" id="shipPin" class="form-input" placeholder="600018" value="600018">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Complimentary Handwritten Gift Note (Optional)</label>
+            <input type="text" id="shipGiftNote" class="form-input" placeholder="e.g. With love on your wedding day...">
+          </div>
+
+          <button class="btn btn-primary btn-lg" style="width:100%; margin-top:1rem;" onclick="goToCheckoutStep2()">
+            Continue to Payment
+          </button>
+        </div>
+
+        <!-- Step 2: Payment Simulator -->
+        <div id="checkoutStep2" style="display:none;">
+          <h3 style="font-size:1.4rem; margin-bottom:1.25rem;">Select Payment Mode</h3>
+          <div class="payment-options-list">
+            <label class="payment-option-card selected" onclick="selectPaymentOption('upi', this)">
+              <input type="radio" name="paymentOption" value="upi" checked
+                style="accent-color:var(--color-espresso-deep);">
+              <div>
+                <strong>UPI Instant Payment (Google Pay / PhonePe / Paytm)</strong>
+                <p style="font-size:0.75rem; color:var(--color-espresso-light);">Fastest & 100% secure. Zero convenience
+                  fee.</p>
+              </div>
+            </label>
+            <label class="payment-option-card" onclick="selectPaymentOption('card', this)">
+              <input type="radio" name="paymentOption" value="card" style="accent-color:var(--color-espresso-deep);">
+              <div>
+                <strong>Credit / Debit Card (Visa, Mastercard, Amex, RuPay)</strong>
+                <p style="font-size:0.75rem; color:var(--color-espresso-light);">All Indian & International cards
+                  supported with 3D Secure OTP.</p>
+              </div>
+            </label>
+            <label class="payment-option-card" onclick="selectPaymentOption('netbanking', this)">
+              <input type="radio" name="paymentOption" value="netbanking"
+                style="accent-color:var(--color-espresso-deep);">
+              <div>
+                <strong>Net Banking (HDFC, ICICI, SBI, Axis, Kotak)</strong>
+                <p style="font-size:0.75rem; color:var(--color-espresso-light);">Direct secure banking gateway.</p>
+              </div>
+            </label>
+            <label class="payment-option-card" onclick="selectPaymentOption('cod', this)">
+              <input type="radio" name="paymentOption" value="cod" style="accent-color:var(--color-espresso-deep);">
+              <div>
+                <strong>Cash on Delivery (COD)</strong>
+                <p style="font-size:0.75rem; color:var(--color-espresso-light);">Available for orders up to ₹30,000
+                  across India.</p>
+              </div>
+            </label>
+          </div>
+
+          <div
+            style="background:var(--color-sand-light); padding:1rem; border-radius:var(--radius-xs); margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+            <span>Payable Amount:</span>
+            <strong id="checkoutPayableAmount"
+              style="font-size:1.3rem; color:var(--color-espresso-deep);">₹28,500</strong>
+          </div>
+
+          <div style="display:flex; gap:1rem;">
+            <button class="btn btn-outline" onclick="goToCheckoutStep1()">Back</button>
+            <button class="btn btn-gold btn-lg" style="flex:1;" onclick="processPayment()">
+              Pay & Place Order Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Order Success Screen -->
+        <div id="checkoutStep3" class="order-success-screen" style="display:none;">
+          <div class="order-success-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+            </svg>
+          </div>
+          <span class="section-pretitle">Order Confirmed</span>
+          <h2 style="font-size:2rem; margin-bottom:0.5rem;">Thank You, <span id="confirmedCustomerName">Patron</span>
+          </h2>
+          <p style="margin-bottom:1.5rem;">Your order <strong id="confirmedOrderId">HZ-2026-8941</strong> has been
+            successfully placed. Your heirloom drape is being prepared in our atelier with the complimentary keepsake
+            box.</p>
+
+          <div
+            style="background:var(--color-sand-light); border:1px solid var(--color-sand); border-radius:var(--radius-xs); padding:1.25rem; max-width:480px; margin:0 auto 1.5rem auto; text-align:left; font-size:0.85rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+              <span>Estimated Delivery:</span>
+              <strong style="color:#2E7D32;">3 Business Days</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+              <span>Authentication:</span>
+              <strong>Silk Mark Tag Attached</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span>Razorpay Payment:</span>
+              <strong style="color:#2E7D32;">Secured & Verified ✓</strong>
+            </div>
+          </div>
+
+          <!-- WhatsApp Order Confirmation CTA -->
+          <button class="whatsapp-consult-btn" style="max-width:380px; margin:0 auto 1.25rem auto; display:flex;" onclick="sendWhatsAppOrderConfirmation()" id="whatsappOrderConfirmBtn">
+            <svg viewBox="0 0 24 24" style="width:20px; height:20px; flex-shrink:0;">
+              <path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-1.09-3.99-3.75-4.11-3.92-.12-.17-.99-1.32-.99-2.55 0-1.22.65-1.81.88-2.06.23-.26.5-.32.67-.32.17 0 .34 0 .49.01.15.01.37-.06.57.44.22.52.74 1.83.8 1.97.07.13.11.29.02.48-.09.18-.14.3-.28.46-.13.16-.28.35-.4.47-.13.13-.26.27-.11.53.15.25.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.11 1.3.26.13.41.11.56-.07.16-.17.67-.78.85-1.05.18-.26.36-.22.6-.13zM12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.08L2 22l5.06-1.33A9.957 9.957 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+            </svg>
+            Send Order Confirmation to WhatsApp
+          </button>
+
+          <button class="btn btn-primary" onclick="finishCheckoutAndClose()">
+            Return to Boutique
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       MODAL 4: LIVE SEARCH MODAL
+       ======================================================================== -->
+  <div class="modal-overlay" id="searchModal" onclick="closeSearchModal()">
+    <div class="modal-box" style="max-width:720px; padding:2rem;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeSearchModal()">&times;</button>
+      <span class="section-pretitle">The Zeraha Archive</span>
+      <h3 style="font-size:1.6rem; margin-bottom:1.25rem;">Search Sarees, Silks & Weaves</h3>
+
+      <div style="position:relative; margin-bottom:1.5rem;">
+        <input type="text" id="liveSearchInput" class="form-input"
+          style="width:100%; padding:0.9rem 1.25rem; font-size:1rem;"
+          placeholder="Type Kanjivaram, Banarasi, Organza, Burgundy, or code..." oninput="handleLiveSearch(this.value)">
+      </div>
+
+      <!-- Quick Search Chips -->
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem; align-items:center;">
+        <span style="font-size:0.75rem; color:var(--color-espresso-light);">Popular:</span>
+        <button class="filter-pill btn-sm" onclick="setSearchQuery('Kanjivaram')">Kanjivaram</button>
+        <button class="filter-pill btn-sm" onclick="setSearchQuery('Banarasi')">Banarasi</button>
+        <button class="filter-pill btn-sm" onclick="setSearchQuery('Organza')">Organza</button>
+        <button class="filter-pill btn-sm" onclick="setSearchQuery('Burgundy')">Burgundy</button>
+        <button class="filter-pill btn-sm" onclick="setSearchQuery('Ivory')">Ivory Gold</button>
+        <button class="filter-pill btn-sm" onclick="setSearchQuery('Bridal')">Bridal Trousseau</button>
+      </div>
+
+      <!-- Search Results Container -->
+      <div id="searchResultsContainer"
+        style="max-height:360px; overflow-y:auto; display:flex; flex-direction:column; gap:0.75rem;">
+        <!-- Live search matches -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       MODAL 5: WISHLIST DRAWER
+       ======================================================================== -->
+  <div class="cart-drawer-overlay" id="wishlistOverlay" onclick="closeWishlistDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3>My Wishlist (<span id="wishlistDrawerCount">0</span>)</h3>
+        <button class="modal-close-btn" style="position:static;" onclick="closeWishlistDrawer()">&times;</button>
+      </div>
+      <div class="cart-items-container" id="wishlistItemsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       MODAL 6: WHATSAPP CONCIERGE & STYLING APPOINTMENT (06)
+       ======================================================================== -->
+  <div class="modal-overlay" id="conciergeModal" onclick="closeConciergeModal()">
+    <div class="modal-box" style="max-width:620px; padding:2.5rem 2rem;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeConciergeModal()">&times;</button>
+      <span class="section-pretitle">Personalized Drape Guidance</span>
+      <h3 style="font-size:1.8rem; margin-bottom:0.5rem;">House of Zeraha Atelier Concierge</h3>
+      <p style="font-size:0.88rem; margin-bottom:1.5rem;">Connect with our senior bridal and weave specialists. Request
+        high-resolution draping videos in natural daylight, bespoke blouse sketches, or bridal trousseau consultations.
+      </p>
+
+      <form onsubmit="event.preventDefault(); handleConciergeSubmit();">
+        <div class="form-group">
+          <label class="form-label">Your Full Name *</label>
+          <input type="text" id="conciergeName" class="form-input" placeholder="e.g. Radhika Sen" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">WhatsApp Number *</label>
+          <input type="tel" id="conciergePhone" class="form-input" placeholder="+91 98765 43210" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Occasion / Interest</label>
+          <select id="conciergeOccasion" class="form-input">
+            <option value="Bridal Trousseau">Bridal Trousseau Consultation</option>
+            <option value="Wedding Guest">Wedding Guest Drape Selection</option>
+            <option value="Festive Saree">Festive Saree (Diwali / Puja)</option>
+            <option value="Custom Blouse">Custom Blouse Tailoring Inquiry</option>
+            <option value="Video Shopping">Schedule 1-on-1 Video Shopping Call</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Any specific Saree Code or Notes?</label>
+          <textarea id="conciergeNotes" class="form-input" rows="3"
+            placeholder="e.g. I am interested in HZ-SILK-001 or HZ-WED-002..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold btn-lg" style="width:100%;">
+          Start WhatsApp Concierge Chat
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       MODAL 7: PLATFORM ARCHITECTURE & DEVELOPER IMPLEMENTATION GUIDE (07)
+       (Specifically requested in user prompt section 7 for A6 platform)
+       ======================================================================== -->
+  <div class="modal-overlay" id="platformModal" onclick="closePlatformModal()">
+    <div class="modal-box platform-modal-box" style="padding:2.5rem 2rem;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closePlatformModal()">&times;</button>
+      <span class="section-pretitle">Section 7 Technical Specification</span>
+      <h3 style="font-size:1.8rem; margin-bottom:0.5rem;">A6 Platform Implementation Request</h3>
+      <p style="font-size:0.88rem; margin-bottom:1.5rem;">As outlined in your project brief, use this exact formatted
+        prompt to send directly to your developer, agency, or website creator for the A6 platform integration.</p>
+
+      <div class="code-block-box">
+        <button class="copy-code-btn" onclick="copyPlatformPrompt()">Copy Request</button>
+        <pre
+          id="platformPromptText">“Please confirm which of the requested design and e-commerce features are supported by our current A6 platform. Show me how to customise the homepage, product pages, collection filters, mobile navigation, checkout, payment gateway, shipping settings, and Google Analytics 4. Identify any additional charges or third-party integrations before implementation.”</pre>
+      </div>
+
+      <div
+        style="background:var(--color-sand-light); border:1px solid var(--color-sand); border-radius:var(--radius-xs); padding:1.25rem; font-size:0.825rem; margin-top:1.5rem;">
+        <strong style="color:var(--color-espresso-deep); display:block; margin-bottom:0.5rem;">A6 Platform Checklist for
+          House Of Zeraha:</strong>
+        <ul style="padding-left:1.25rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <li>✓ <strong>Quiet Luxury Palette:</strong> Ivory (#F8F4EC), Champagne (#C5A572), Espresso (#3E3027), Sand
+            (#E9DFD1), Burgundy (#722F3B).</li>
+          <li>✓ <strong>Catalog Structure:</strong> 24 curated sarees with codes HZ-SILK-001 through HZ-EVD-024.</li>
+          <li>✓ <strong>Multi-faceted Filter Engine:</strong> Filter by Price, Colour swatch, Fabric weave, and
+            Occasion.</li>
+          <li>✓ <strong>Mobile-First Polish:</strong> Sticky navigation, slide-out drawer bag, and WhatsApp concierge.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       MODAL 8: POLICIES MODAL (08 Policies)
+       ======================================================================== -->
+  <div class="modal-overlay" id="policyModal" onclick="closePolicyModal()">
+    <div class="modal-box" style="max-width:760px; padding:2.5rem 2rem;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closePolicyModal()">&times;</button>
+      <div id="policyContent">
+        <!-- Rendered based on selected tab -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================
+       MODAL 9: ATELIER ACCOUNT MODAL
+       ======================================================================== -->
+  <div class="modal-overlay" id="accountModal" onclick="closeAccountModal()">
+    <div class="modal-box" style="max-width:480px; padding:2.5rem 2rem; text-align:center;"
+      onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeAccountModal()">&times;</button>
+      <div class="brand-crest" style="margin-bottom:0.5rem;">
+        <svg viewBox="0 0 24 24" style="width:24px; height:24px; fill:var(--color-champagne);">
+          <path d="M12 2L14.5 7.5L20 9L16 13L17 19L12 16L7 19L8 13L4 9L9.5 7.5L12 2Z" />
+        </svg>
+      </div>
+      <h3 style="font-size:1.6rem; margin-bottom:0.35rem;">House of Zeraha Atelier</h3>
+      <p style="font-size:0.85rem; margin-bottom:1.5rem;">Sign in to view your orders, saved drapes, and member
+        privileges.</p>
+
+      <div class="form-group" style="text-align:left;">
+        <label class="form-label">Email or Phone</label>
+        <input type="text" class="form-input" placeholder="e.g. gayatri@example.com" value="gayatri@zeraha-patron.com">
+      </div>
+      <div class="form-group" style="text-align:left;">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" value="••••••••••••">
+      </div>
+      <button class="btn btn-primary" style="width:100%; margin-top:0.75rem;" onclick="simulateLogin()">
+        Sign In to Atelier
+      </button>
+      <div style="margin-top:1rem; font-size:0.75rem; color:var(--color-espresso-light);">
+        New to Zeraha? <a href="javascript:void(0)"
+          onclick="showToast('VIP membership registration is open with code ELEGANCE10')"
+          style="color:var(--color-champagne-dark); font-weight:600;">Create Account</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Floating WhatsApp Concierge Button -->
+  <aside class="floating-concierge" onclick="openConciergeModal()" aria-label="WhatsApp Concierge">
+    <svg viewBox="0 0 24 24">
+      <path
+        d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-1.09-3.99-3.75-4.11-3.92-.12-.17-.99-1.32-.99-2.55 0-1.22.65-1.81.88-2.06.23-.26.5-.32.67-.32.17 0 .34 0 .49.01.15.01.37-.06.57.44.22.52.74 1.83.8 1.97.07.13.11.29.02.48-.09.18-.14.3-.28.46-.13.16-.28.35-.4.47-.13.13-.26.27-.11.53.15.25.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.11 1.3.26.13.41.11.56-.07.16-.17.67-.78.85-1.05.18-.26.36-.22.6-.13zM12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.08L2 22l5.06-1.33A9.957 9.957 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+    </svg>
+    <span>WhatsApp Concierge</span>
+  </aside>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-notification" id="toastNotification">
+    <span id="toastIcon">⚜</span>
+    <span id="toastMessage">Item added to your shopping bag</span>
+  </div>
+
+  <!-- JavaScript Applications -->
+  <script src="data/products.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
